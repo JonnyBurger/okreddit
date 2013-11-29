@@ -1,0 +1,14 @@
+{
+	"name": "chrome_voice",
+	"manifest_version": 2,
+	"version": "0.0.0",
+	"content_scripts": [{
+		"matches": ["*://*.reddit.com/*"],
+		"js": ["index.js"],
+		"css": ["style.css"]
+	}],
+	"permissions": ["tts"],
+	"background": {
+		"scripts": ["tts.js"]
+	}
+}
