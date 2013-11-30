@@ -27,4 +27,4 @@ You can start a command using 'reddit', 'ok reddit' or just start talking withou
 
 ## Add more commands
 
-It isn't hard to add any more commands
+It isn't hard to add any more commands, feel free to send pull requests!
