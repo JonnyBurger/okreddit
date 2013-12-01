@@ -19,7 +19,9 @@ var start_speech = function() {
 	}
 	settings.recognition.onend = function() {
 		console.log('ended', settings.recognition)
-		settings.recognition.start();
+		if (!document.webkitHidden) {
+			settings.recognition.start();
+		}
 	}
 	settings.recognition.start();
 }
@@ -111,7 +113,9 @@ var evaluate_command = function(result) {
 		voice_finished();
 	}
 	setTimeout(function() {
-		start_speech();
+		if (!document.webkitHidden) {
+			start_speech();
+		}
 	}, mstillstartsagain);
 }
 var voice_finished = function() {
@@ -196,5 +200,22 @@ var select_post = function(numberselected) {
 }
 start_speech();
 inject_html();
+document.addEventListener('webkitvisibilitychange', function() {
+	if (document.webkitHidden) {
+		console.log('hidden')
+		if (settings.recognition) {
+			settings.recognition.stop();
+		}
+	}
+	else {
+		console.log('visible');
+		if (settings.recognition) {
+			settings.recognition.start();
+		}
+		else {
+			start_speech();
+		}
+	}
+})
 
 var forEach = Array.prototype.forEach;
