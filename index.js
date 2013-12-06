@@ -66,14 +66,45 @@ var evaluate_command = function(result) {
 		voice_finished();
 	}
 	/*
-		'open link'
+	'open link'
 	*/
 	if (phrase == 'open link') {
-		link = document.querySelector('.last-clicked a');
-		if (link) {
-			link.click();
-		}
-		voice_finished();
+	    link = document.querySelector('.last-clicked a');
+	    if (link) {
+	    //  link.click();  just clicks
+	        window.open(link, '_blank');    // new tab
+	    }
+	    voice_finished();
+	}
+	/*
+	'close link' - Only works on tabs @ reddit.com right now (because they keep listening).
+	*/
+	if (phrase == 'close link') {
+	    link = document.querySelector('.last-clicked a');
+	    if (link) {
+	        window.open('', '_self', ''); window.close(); // close tab
+	    }
+	    voice_finished();
+	}
+	/*
+	'next image' - next image in RES gallery (remake next and previous post to "move up" and "move down")
+	*/
+	if (phrase == 'next image') {
+	    link = document.querySelector('.last-clicked .next.noKeyNav');
+	    if (link) {
+	        link.click();
+	    }
+	    voice_finished();
+	}
+	/*
+	'previous image in RES gallery'
+	*/
+	if (phrase == 'previous image') {
+	    link = document.querySelector('.last-clicked .previous.noKeyNav');
+	    if (link) {
+	        link.click();
+	    }
+	    voice_finished();
 	}
 	if (phrase == 'downvote') {
 		link = document.querySelector('.last-clicked .arrow.down');
